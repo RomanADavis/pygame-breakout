@@ -1,8 +1,7 @@
-from pygame import init, display
+from pygame import init, display, time
 
 from lib.colors import BLACK
 
-from lib.paddle import Paddle
 
 class Game():
   def __init__(self, width=800, height=600):
@@ -10,14 +9,24 @@ class Game():
     self.screen = display.set_mode((width, height))
     display.set_caption("Roman's Breakout Clone")
 
-    self.paddle = Paddle()
-    self.brick = Brick()
-    self.ball = Ball()
+    from lib.paddle import Paddle
+    from lib.brick import Brick
+    
+    # self.paddle = Paddle()
+    self.bricks = Brick.load_bricks()
+    # self.ball = Ball()
 
     self.over = False
-    self.clock = pygame.time.Clock()
+    self.clock = time.Clock()
 
   def run(self, milliseconds=100):
+    print(self.bricks)
     while not self.over:
-      tick = clock.tick(milliseconds)
-      screen.fill(BLACK)
+      tick = self.clock.tick(milliseconds)
+      self.screen.fill(BLACK)
+      
+      for row in self.bricks:
+        for brick in row:
+          brick.draw()
+
+      display.update()
