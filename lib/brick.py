@@ -5,7 +5,9 @@ from lib.setup import SCREEN
 class Brick():
   image = image.load("images/brick.png").convert_alpha()
   rect = image.get_rect()
-  
+  width = image.get_width()
+  height = image.get_height()
+    
   def __init__(self, x, y):
     self.x = x
     self.y = y

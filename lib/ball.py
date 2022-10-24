@@ -3,11 +3,12 @@ from pygame import image, K_SPACE
 from lib.setup import SCREEN
 
 class Ball():
+  image = image.load("images/football.png").convert_alpha()
+  rect = image.get_rect()
+  width = image.get_width()
+  height = image.get_height()
+  
   def __init__(self, starting_position=(200, 200), speed=(3.0, 3.0)):
-    self.image = image.load("images/football.png").convert_alpha()
-    self.rect = self.image.get_rect()
-    self.width = self.image.get_width()
-    self.height = self.image.get_height()
 
     self.starting_position = starting_position
     self.default_speed = speed

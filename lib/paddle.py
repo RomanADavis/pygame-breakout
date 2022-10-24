@@ -2,11 +2,11 @@ from pygame import image, K_LEFT, K_RIGHT
 from lib.setup import SCREEN
 
 class Paddle():
+  image = image.load("images/paddle.png").convert_alpha()
+  width = image.get_width()
+  height = image.get_height()
+  
   def __init__(self, x=0):
-    self.image = image.load("images/paddle.png").convert_alpha()
-    self.rect = self.image.get_rect()
-    self.width = self.image.get_width()
-    self.height = self.image.get_height()
     self.x = 0
     self.y = SCREEN.get_height() - 100
     self.speed = 1
