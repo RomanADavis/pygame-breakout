@@ -6,11 +6,11 @@ class Ball():
   def __init__(self, starting_position=(200, 200), speed=(3.0, 3.0)):
     self.image = image.load("images/football.png").convert_alpha()
     self.rect = self.image.get_rect()
-    self.x, self.y = starting_position
     self.width = self.image.get_width()
     self.height = self.image.get_height()
-    self.x_speed, self.y_speed = speed
-    self.is_moving = False
+
+    self.starting_position = starting_position
+    self.default_speed = speed
 
     self.limits = {
       "top": 0,
@@ -18,6 +18,14 @@ class Ball():
       "left": 0,
       "right": SCREEN.get_width() - self.image.get_width()
     }
+
+    self.set_up()
+
+  def set_up(self):
+    self.x, self.y = self.starting_position
+    self.x_speed, self.y_speed = self.default_speed
+
+    self.is_moving = False
 
   def draw(self):
     SCREEN.blit(self.image, (self.x, self.y))
@@ -36,7 +44,7 @@ class Ball():
     if self.y < self.limits["top"]:
       self.y_speed *= -1
     if self.y > self.limits["bottom"]:
-        self.y_speed *= -1
+      self.set_up()
 
   def serve(self, pressed):
     if pressed[K_SPACE]:

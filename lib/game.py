@@ -33,7 +33,7 @@ class Game():
         milliseconds)
       for event in pygame.event.get():
         if event.type == pygame.QUIT:
-          game_over = True
+          self.over = True
       self.screen.fill(BLACK)
       
       pressed = key.get_pressed()
@@ -51,3 +51,4 @@ class Game():
 
 
       display.update()
+    
