@@ -13,6 +13,12 @@ class Game():
     self.over = False
     self.clock = time.Clock()
 
+  def collide(self):
+    if self.paddle.x + self.paddle.width>= self.ball.x >= self.paddle.x and \
+      self.ball.y + self.ball.height >= self.paddle.y >= self.ball.y and \
+      self.ball.y_speed > 0:
+      self.ball.y_speed *= -1
+
   def run(self, milliseconds=100):
     from lib.paddle import Paddle
     from lib.brick import Brick
@@ -32,10 +38,16 @@ class Game():
       
       pressed = key.get_pressed()
       self.paddle.control(pressed, tick)
+      self.ball.serve(pressed)
+      self.collide()
+      self.ball.move()
+
       for row in self.bricks:
         for brick in row:
           brick.draw()
       self.paddle.draw()
+
       self.ball.draw()
+
 
       display.update()
