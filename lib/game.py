@@ -16,11 +16,12 @@ class Game():
   def run(self, milliseconds=100):
     from lib.paddle import Paddle
     from lib.brick import Brick
-    
-    # self.paddle = Paddle()
+    from lib.ball import Ball
+
     self.paddle = Paddle()
     self.bricks = Brick.load_bricks()
-    # self.ball = Ball()
+    self.ball = Ball()
+    
     while not self.over:
       tick = self.clock.tick(
         milliseconds)
@@ -35,4 +36,6 @@ class Game():
         for brick in row:
           brick.draw()
       self.paddle.draw()
+      self.ball.draw()
+
       display.update()
