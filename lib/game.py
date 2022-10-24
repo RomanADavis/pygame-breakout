@@ -29,6 +29,13 @@ class Game():
           brick.y <= self.ball.y <= brick.y + brick.height:
           row.remove(brick)
 
+          if self.ball.x <= brick.x + 2 or \
+            self.ball.x >= brick.x + brick.width -2:
+            self.ball.x_speed *= -1
+          elif self.ball.y <= brick.y + 2 or \
+            self.ball.y >= brick.y + brick.height -2:
+            self.ball.y_speed *= -1
+
   def run(self, milliseconds=100):
     from lib.paddle import Paddle
     from lib.brick import Brick
